@@ -1,0 +1,39 @@
+version: "3.9"
+services:
+  #aplicação web (PHP+NGINX)
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    networks:
+      - principal
+    volumes:
+      - .:/var/www
+      - ./docker/nginx/sites:/etc/nginx/sites-available
+    ports:
+      #- "80:80" #http
+      #- "443:443" #https
+      - "8000:8000"
+      - "3000:3000"
+    depends_on:
+      - mysql
+  # aplicação MySQL
+  mysql:
+    image: mysql:8.0.29-debian
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+#      - MYSQL_VOLUME_EXEMPLO=/var/lib/mysql
+      - MYSQL_VOLUME:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: local
+    networks:
+      - principal
+    ports:
+      - "3307:3306"
+networks:
+  principal:
+volumes:
+  MYSQL_VOLUME:
+    driver: local
