@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Interfaces\Services\Auth\IRegisterUserService;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -15,33 +16,23 @@ use Illuminate\Validation\ValidationException;
 class RegisteredUserController extends Controller
 {
 
-    public function __construct()
-    {
-    }
+    public function __construct(
+       private readonly IRegisterUserService $userService
+    ){}
+
 
     /**
      * Handle an incoming registration request.
      *
-     * @throws ValidationException
      */
     public function register(Request $request): Response
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'cpf' => ['required', 'string','max:11', 'unique:'.User::class],
+            'password' => ['required'],
         ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return response()->noContent();
+        return $this->userService->register($request);
     }
 }
