@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\Services\Auth\IDeletedUserService;
-use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class DeletedUserController extends Controller
 {
@@ -14,8 +13,8 @@ class DeletedUserController extends Controller
         private readonly IDeletedUserService $userService
     ){}
 
-    public function delete(Request $request): \Illuminate\Http\JsonResponse
+    public function delete(Request $request): JsonResponse
     {
-
+        return $this->userService->deleteUser($request);
     }
 }

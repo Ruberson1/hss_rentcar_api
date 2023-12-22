@@ -21,8 +21,7 @@ class ReservationSeeder extends Seeder
                 'user_id' => 1,
                 'start_reservation_date' => '2023-12-26 12:00:00',
                 'end_reservation_date' => '2023-12-27 12:00:00',
-                'canceled' => false,
-                'active' => true
+                'canceled' => false
             ],
         ];
 

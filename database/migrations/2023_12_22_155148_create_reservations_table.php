@@ -18,7 +18,7 @@ return new class extends Migration
             $table->dateTime('start_reservation_date')->nullable();
             $table->dateTime('end_reservation_date')->nullable();
             $table->boolean('canceled')->default(false);
-            $table->boolean('active')->default(false);
+            $table->timestamps();
         });
     }
 

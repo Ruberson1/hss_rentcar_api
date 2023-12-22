@@ -19,7 +19,6 @@ class DeletedUserRepository implements IDeletedUserRepository
                 'message' => 'User deleted successfully.'
             ], 200);
         } catch (Exception $exception) {
-            // Handle any errors gracefully
             return response()->json([
                 'error' => 'Failed to delete user.',
                 'message' => $exception->getMessage()

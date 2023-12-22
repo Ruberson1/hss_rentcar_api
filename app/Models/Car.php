@@ -21,6 +21,7 @@ class Car extends Model
         'model',
         'plate',
         'year',
+        'reserved'
     ];
 
     public function users(): BelongsToMany

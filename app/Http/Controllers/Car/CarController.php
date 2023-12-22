@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Car;
 
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\Services\Auth\IRegisterUserService;
+use App\Http\Interfaces\Services\Car\ICarService;
 use App\Models\Car;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -15,11 +16,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 
-class RegisteredCarController extends Controller
+class CarController extends Controller
 {
 
     public function __construct(
-       private readonly IRegisterCarService $carService
+       private readonly ICarService $carService
     ){}
 
 
@@ -37,5 +38,30 @@ class RegisteredCarController extends Controller
             'reserved' => ['required', 'bool'],
         ]);
         return $this->carService->register($request);
+    }
+
+    public function get(Request $request): JsonResponse
+    {
+        return $this->carService->getAll($request);
+    }
+
+    public function getOneById(Request $request): JsonResponse
+    {
+        return $this->carService->getOneById($request);
+    }
+
+    public function update(Request $request): JsonResponse
+    {
+        return $this->carService->update($request);
+    }
+
+    public function reserved(Request $request): JsonResponse
+    {
+        return $this->carService->reserved($request);
+    }
+
+    public function delete(Request $request): JsonResponse
+    {
+        return $this->carService->delete($request);
     }
 }

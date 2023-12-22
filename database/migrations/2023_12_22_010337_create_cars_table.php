@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('model');
             $table->integer('year');
             $table->string('plate')->unique();
+            $table->boolean('reserved')->default(false);
             $table->timestamps();
         });
     }

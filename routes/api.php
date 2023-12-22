@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Car\CarController;
+use App\Http\Controllers\Reservation\ReservationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('car')->group(function () {
+    Route::get('/list', [CarController::class, 'getAll']);
+    Route::post('/register', [CarController::class, 'register']);
+    Route::get('/{id}', [CarController::class, 'getOneById']);
+    Route::put('/{id}', [CarController::class, 'update']);
+    Route::patch('/{id}', [CarController::class, 'reserved']);
+    Route::delete('/{id}', [CarController::class, 'delete']);
+});
+
+Route::prefix('reservation')->group(function () {
+    Route::get('/list', [ReservationController::class, 'getAll']);
+    Route::post('/register', [ReservationController::class, 'register']);
+    Route::get('/{car_id}', [ReservationController::class, 'getByCar']);
+    Route::get('/{user_id}', [ReservationController::class, 'getByUser']);
+    Route::put('/{id}', [ReservationController::class, 'update']);
+    Route::patch('/{id}', [ReservationController::class, 'canceled']);
 });

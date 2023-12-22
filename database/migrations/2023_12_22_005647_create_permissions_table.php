@@ -20,7 +20,7 @@ return new class extends Migration
         Schema::create('permission_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('permission_id')->constrained('permissions');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->boolean('active')->default(true);
         });
     }

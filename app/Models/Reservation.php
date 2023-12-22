@@ -19,7 +19,6 @@ class Reservation extends Model
         'user_id',
         'start_reservation_date',
         'end_reservation_date',
-        'canceled',
-        'active'
+        'canceled'
     ];
 }

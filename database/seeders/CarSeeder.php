@@ -18,19 +18,22 @@ class CarSeeder extends Seeder
                 'brand' => 'Fiat',
                 'model' => 'Toro',
                 'plate' => 'HVV-5579',
-                'year' => 2023
+                'year' => 2023,
+                'reserved' => true,
             ],
             [
                 'brand' => 'Toyota',
                 'model' => 'Corolla',
                 'plate' => 'HJJ-3579',
-                'year' => 2023
+                'year' => 2023,
+                'reserved' => false,
             ],
             [
                 'brand' => 'Hyundai',
                 'model' => 'HB20',
                 'plate' => 'HGI-5929',
-                'year' => 2023
+                'year' => 2023,
+                'reserved'=> false
             ],
 
         ];

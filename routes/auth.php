@@ -14,7 +14,6 @@ Route::post('/register', [RegisteredUserController::class, 'register'])
                 ->name('register');
 
 Route::delete('/delete/{id}', [DeletedUserController::class, 'delete'])
-    ->middleware('guest')
     ->name('delete');
 
 Route::post('/login', [AuthenticatedSessionController::class, 'login'])
