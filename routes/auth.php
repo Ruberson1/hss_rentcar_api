@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\DeletedUserController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -11,6 +12,10 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [RegisteredUserController::class, 'register'])
                 ->middleware('guest')
                 ->name('register');
+
+Route::delete('/delete/{id}', [DeletedUserController::class, 'delete'])
+    ->middleware('guest')
+    ->name('delete');
 
 Route::post('/login', [AuthenticatedSessionController::class, 'login'])
                 ->middleware('guest')

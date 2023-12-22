@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Interfaces\Repositories;
+namespace App\Http\Interfaces\Repositories\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

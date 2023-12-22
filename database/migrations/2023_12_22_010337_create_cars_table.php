@@ -19,16 +19,6 @@ return new class extends Migration
             $table->string('plate')->unique();
             $table->timestamps();
         });
-
-        Schema::create('car_user', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('car_id')->constrained('cars');
-            $table->foreignId('user_id')->constrained('users');
-            $table->dateTime('start_reservation_date')->nullable();
-            $table->dateTime('end_reservation_date')->nullable();
-            $table->boolean('canceled')->default(false);
-            $table->boolean('active')->default(false);
-        });
     }
 
     /**

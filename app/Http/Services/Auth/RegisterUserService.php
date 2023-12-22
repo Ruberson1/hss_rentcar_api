@@ -2,7 +2,7 @@
 
 namespace App\Http\Services\Auth;
 
-use App\Http\Interfaces\Repositories\IRegisterUserRepository;
+use App\Http\Interfaces\Repositories\Auth\IRegisterUserRepository;
 use App\Http\Interfaces\Services\Auth\IRegisterUserService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

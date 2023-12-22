@@ -2,7 +2,8 @@
 
 namespace App\Http\Repositories\Auth;
 
-use App\Http\Interfaces\Repositories\IRegisterUserRepository;
+use App\Http\Interfaces\Repositories\Auth\IRegisterUserRepository;
+use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -14,12 +15,16 @@ class RegisterUserRepository implements IRegisterUserRepository
 {
     public function register(Request $request): Response
     {
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'cpf' => $request->cpf,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->cpf = $request->cpf;
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+
+        $permission = Permission::find(env('CUSTOMER_PERMISSION', 3));
+        $user->permissions()->save($permission);
 
         event(new Registered($user));
 
