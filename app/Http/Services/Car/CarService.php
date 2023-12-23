@@ -28,7 +28,8 @@ class CarService implements ICarService
 
     public function getOneById(Request $request): JsonResponse
     {
-        return $this->carRepository->getOneById($request);
+        $carId = $request->id;
+        return $this->carRepository->getOneById(carId: $carId);
     }
 
     public function update(Request $request): JsonResponse
@@ -38,7 +39,9 @@ class CarService implements ICarService
 
     public function reserved(Request $request): JsonResponse
     {
-        return $this->carRepository->reserved($request);
+        $carId = $request->id;
+        $isReserved = $request->reserved;
+        return $this->carRepository->reserved(carId: $carId, isReserved: $isReserved);
     }
 
     public function delete(Request $request): JsonResponse

@@ -12,6 +12,7 @@ use App\Http\Interfaces\Services\Auth\INewPasswordService;
 use App\Http\Interfaces\Services\Auth\IPasswordResetLinkService;
 use App\Http\Interfaces\Services\Auth\IRegisterUserService;
 use App\Http\Interfaces\Services\Car\ICarService;
+use App\Http\Interfaces\Services\Email\ISendEmailService;
 use App\Http\Interfaces\Services\Reservation\IReservationService;
 use App\Http\Repositories\Auth\DeletedUserRepository;
 use App\Http\Repositories\Auth\RegisterUserRepository;
@@ -23,6 +24,7 @@ use App\Http\Services\Auth\NewPasswordService;
 use App\Http\Services\Auth\PasswordResetLinkService;
 use App\Http\Services\Auth\RegisterUserService;
 use App\Http\Services\Car\CarService;
+use App\Http\Services\Email\SendEmailService;
 use App\Http\Services\Reservation\ReservationService;
 use Illuminate\Support\ServiceProvider;
 
@@ -63,6 +65,9 @@ class AppServiceProvider extends ServiceProvider
 
         //Car Repositories
         $this->app->bind(IReservationRepository::class, ReservationRepository::class);
+
+        //Email Service
+        $this->app->bind(ISendEmailService::class, SendEmailService::class);
     }
 
     /**

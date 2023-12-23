@@ -25,11 +25,11 @@ class CarRepository implements ICarRepository
 
             $car->save();
             return response()->json([
-                'message' => 'car created successfully.'
+                'message' => 'veículo registrado com sucesso.'
             ], 201);
         } catch (Exception $exception) {
             return response()->json([
-                'error' => 'Failed to create car.',
+                'error' => 'Falha ao tentar registrar o veículo.',
                 'message' => $exception->getMessage()
             ], 500);
         }
@@ -42,15 +42,13 @@ class CarRepository implements ICarRepository
         return response()->json($cars);
     }
 
-    public function getOneById(Request $request): JsonResponse
+    public function getOneById(int $carId): JsonResponse
     {
-        $carId = $request->id;
-
         try {
             $car = Car::findOrFail($carId);
             return response()->json($car);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Car not found'], 404);
+            return response()->json(['error' => 'Veículo não encontrado'], 404);
         }
     }
 
@@ -60,27 +58,22 @@ class CarRepository implements ICarRepository
 
         try {
             $car = Car::findOrFail($carId);
-            $car->update($request->all()); // Assuming you want to update all fields
+            $car->update($request->all());
             return response()->json($car);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Car not found'], 404);
+            return response()->json(['error' => 'Veículo não encontrado'], 404);
         }
     }
 
-    public function reserved(Request $request): JsonResponse
+    public function reserved(int $carId, bool $isReserved): JsonResponse
     {
-        $carId = $request->id;
-        $reserved = $request->validate([
-            'reserved' => 'boolean',
-        ]);
-
         try {
             $car = Car::findOrFail($carId);
-            $car->reserved = $reserved['reserved'];
+            $car->reserved = $isReserved;
             $car->save();
-            return response()->json(['message' => 'Car reserved status updated'], 200);
+            return response()->json(['message' => 'Status alterado com sucesso'], 200);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Car not found'], 404);
+            return response()->json(['error' => ' Veículo não encontrado'], 404);
         }
     }
 
@@ -91,9 +84,9 @@ class CarRepository implements ICarRepository
         try {
             $car = Car::findOrFail($carId);
             $car->delete();
-            return response()->json(['message' => 'Car deleted'], 200);
+            return response()->json(['message' => 'Veículo deletado'], 200);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Car not found'], 404);
+            return response()->json(['error' => 'Veículo não encontrado'], 404);
         }
     }
 }

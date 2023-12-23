@@ -11,11 +11,11 @@ interface ICarRepository
 
     public function getAll(Request $request): JsonResponse;
 
-    public function getOneById(Request $request): JsonResponse;
+    public function getOneById(int $carId): JsonResponse;
 
     public function update(Request $request): JsonResponse;
 
-    public function reserved(Request $request): JsonResponse;
+    public function reserved(int $carId, bool $isReserved): JsonResponse;
 
     public function delete(Request $request): JsonResponse;
 }

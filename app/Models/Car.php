@@ -24,6 +24,14 @@ class Car extends Model
         'reserved'
     ];
 
+    protected $casts = [
+//        'task_date' => 'date:d/m/Y H:i:s',
+//        'homolog_date' => 'date:d/m/Y H:i:s',
+//        'dev_date' => 'date:d/m/Y H:i:s',
+//        'req_homolog_date' => 'date:d/m/Y H:i:s',
+        'reserved' => 'boolean'
+    ];
+
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);

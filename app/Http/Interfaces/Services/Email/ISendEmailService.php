@@ -2,7 +2,7 @@
 
 namespace App\Http\Interfaces\Services\Email;
 
-interface ISendEmail
+interface ISendEmailService
 {
     public function emailNotification($data): void;
 }

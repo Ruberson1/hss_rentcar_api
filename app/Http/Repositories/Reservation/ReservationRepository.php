@@ -24,7 +24,7 @@ class ReservationRepository implements IReservationRepository
 
             $reservation->save();
             return response()->json([
-                'message' => 'reservation created successfully.'
+                'message' => 'Carro reservado com sucesso.'
             ], 201);
         } catch (Exception $exception) {
             return response()->json([
@@ -86,9 +86,9 @@ class ReservationRepository implements IReservationRepository
         ]);
 
         try {
-            $car = Reservation::findOrFail($reservationId);
-            $car->canceled = $canceled['canceled'];
-            $car->save();
+            $reservation = Reservation::findOrFail($reservationId);
+            $reservation->canceled = $canceled['canceled'];
+            $reservation->save();
             return response()->json(['message' => 'Reservation reserved status updated'], 200);
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'Reservation not found'], 404);
