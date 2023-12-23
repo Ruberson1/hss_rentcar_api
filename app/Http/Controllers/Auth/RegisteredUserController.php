@@ -36,4 +36,14 @@ class RegisteredUserController extends Controller
         ]);
         return $this->userService->register($request);
     }
+
+    public function update(Request $request): JsonResponse
+    {
+        return $this->userService->update($request);
+    }
+
+    public function getAll(): JsonResponse
+    {
+        return $this->userService->userList();
+    }
 }

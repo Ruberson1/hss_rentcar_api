@@ -35,12 +35,19 @@ class CarController extends Controller
             'model' => ['required', 'string', 'max:255'],
             'year' => ['required','max:4', 'integer'],
             'plate' => ['required', 'string','max:7', 'unique:'.Car::class],
+            'category_id' => ['required', 'integer'],
             'reserved' => ['required', 'bool'],
         ]);
+
         return $this->carService->register($request);
     }
 
-    public function get(Request $request): JsonResponse
+    public function available(Request $request): JsonResponse
+    {
+        return $this->carService->availableCars($request);
+    }
+
+    public function getAll(Request $request): JsonResponse
     {
         return $this->carService->getAll($request);
     }

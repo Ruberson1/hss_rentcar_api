@@ -23,6 +23,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::prefix('car')->group(function () {
     Route::get('/list', [CarController::class, 'getAll']);
     Route::post('/register', [CarController::class, 'register']);
+    Route::get('/available', [CarController::class, 'available']);
     Route::get('/{id}', [CarController::class, 'getOneById']);
     Route::put('/{id}', [CarController::class, 'update']);
     Route::patch('/{id}', [CarController::class, 'reserved']);
@@ -32,8 +33,8 @@ Route::prefix('car')->group(function () {
 Route::prefix('reservation')->group(function () {
     Route::get('/list', [ReservationController::class, 'getAll']);
     Route::post('/register', [ReservationController::class, 'register']);
-    Route::get('/{car_id}', [ReservationController::class, 'getByCar']);
-    Route::get('/{user_id}', [ReservationController::class, 'getByUser']);
+    Route::get('/car-reservation/{car_id}', [ReservationController::class, 'getByCar']);
+    Route::get('/user-reservation/{user_id}', [ReservationController::class, 'getByUser']);
     Route::put('/{id}', [ReservationController::class, 'update']);
     Route::patch('/{id}', [ReservationController::class, 'canceled']);
 });

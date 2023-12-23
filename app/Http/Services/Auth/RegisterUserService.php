@@ -17,6 +17,16 @@ class RegisterUserService implements IRegisterUserService
 
     public function register(Request $request): JsonResponse
     {
-        return $this->userRepository->register($request);
+        return $this->userRepository->register(request: $request);
+    }
+
+    public function update(Request $request): JsonResponse
+    {
+        return $this->userRepository->update(request: $request);
+    }
+
+    public function userList(): JsonResponse
+    {
+        return $this->userRepository->userList();
     }
 }

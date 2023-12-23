@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('year');
             $table->string('plate')->unique();
             $table->boolean('reserved')->default(false);
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

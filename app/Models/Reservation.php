@@ -19,6 +19,16 @@ class Reservation extends Model
         'user_id',
         'start_reservation_date',
         'end_reservation_date',
-        'canceled'
+        'canceled',
+        'confirm_rental',
+        'confirm_return'
+    ];
+
+    protected $casts = [
+        'canceled' => 'boolean',
+        'confirm_rental' => 'boolean',
+        'confirm_return' => 'boolean',
+        'start_reservation_date' => 'date:d/m/Y H:i:s',
+        'end_reservation_date' => 'date:d/m/Y H:i:s',
     ];
 }

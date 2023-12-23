@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('car_id')->constrained('cars');
+            $table->unsignedBigInteger('car_id')->nullable();
+            $table->foreign('car_id')->references('id')->on('cars');
             $table->foreignId('user_id')->constrained('users');
             $table->dateTime('start_reservation_date')->nullable();
             $table->dateTime('end_reservation_date')->nullable();
             $table->boolean('canceled')->default(false);
+            $table->boolean('confirm_rental')->default(false);
+            $table->boolean('confirm_return')->default(false);
             $table->timestamps();
         });
     }

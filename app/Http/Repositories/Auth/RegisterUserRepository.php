@@ -7,6 +7,7 @@ use App\Models\Permission;
 use App\Models\User;
 use Exception;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,13 +33,37 @@ class RegisterUserRepository implements IRegisterUserRepository
 
             Auth::login($user);
             return response()->json([
-                'message' => 'User created successfully.'
+                'message' => 'Usuário criado com sucesso.'
             ], 201);
         } catch (Exception $exception) {
             return response()->json([
-                'error' => 'Failed to create user.',
+                'error' => 'Falha ao tentar criar o usuário.',
                 'message' => $exception->getMessage()
             ], 500);
         }
+    }
+
+    public function update(Request $request): JsonResponse
+    {
+        $userId = $request->id;
+
+        try {
+            $user = User::find($userId);
+            $user->update($request->only([
+                'name', 'email'
+            ]));
+            $permission = Permission::find($request->permission);
+            $user->permissions()->sync($permission);
+            return response()->json($user);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Usuário não encontrado'], 404);
+        }
+    }
+
+    public function userList(): JsonResponse
+    {
+        $users = User::all();
+
+        return response()->json($users);
     }
 }

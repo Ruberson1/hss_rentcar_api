@@ -9,4 +9,8 @@ use Illuminate\Http\Response;
 interface IRegisterUserService
 {
     public function register(Request $request): JsonResponse;
+
+    public function update(Request $request): JsonResponse;
+
+    public function userList(): JsonResponse;
 }

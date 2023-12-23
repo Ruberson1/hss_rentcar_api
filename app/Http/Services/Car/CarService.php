@@ -21,6 +21,11 @@ class CarService implements ICarService
         return $this->carRepository->register($request);
     }
 
+    public function availableCars(Request $request): JsonResponse
+    {
+        return $this->carRepository->availableCars($request);
+    }
+
     public function getAll(Request $request): JsonResponse
     {
         return $this->carRepository->getAll($request);

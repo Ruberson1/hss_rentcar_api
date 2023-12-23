@@ -22,6 +22,7 @@ class CarRepository implements ICarRepository
             $car->plate = $request->plate;
             $car->year = $request->year;
             $car->reserved = $request->reserved;
+            $car->category_id = $request->category_id;
 
             $car->save();
             return response()->json([
@@ -33,6 +34,29 @@ class CarRepository implements ICarRepository
                 'message' => $exception->getMessage()
             ], 500);
         }
+    }
+
+    public function availableCars(Request $request): JsonResponse
+    {
+        $category_id = $request->category_id;
+        $start_date = $request->start_reservation_date;
+        $end_date = $request->end_reservation_date;
+
+        $availableCars = Car::where('category_id', $category_id)
+            ->whereNotIn('id', function ($query) use ($start_date, $end_date) {
+                $query->select('car_id')
+                    ->from('reservations')
+                    ->where(function ($query) use ($start_date, $end_date) {
+                        $query->whereBetween('start_reservation_date', [$start_date, $end_date])
+                            ->orWhereBetween('end_reservation_date', [$start_date, $end_date])
+                            ->orWhere(function ($query) use ($start_date, $end_date) {
+                                $query->where('start_reservation_date', '<', $start_date)
+                                    ->where('end_reservation_date', '>', $end_date);
+                            });
+                    });
+            })
+            ->get();
+        return response()->json($availableCars, 500);
     }
 
     public function getAll(Request $request): JsonResponse

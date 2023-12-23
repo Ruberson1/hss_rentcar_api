@@ -6,10 +6,8 @@ use App\Events\RegisterReservation;
 use App\Http\Interfaces\Repositories\Car\ICarRepository;
 use App\Http\Interfaces\Repositories\Reservation\IReservationRepository;
 use App\Http\Interfaces\Services\Reservation\IReservationService;
-use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class ReservationService implements IReservationService
@@ -25,8 +23,6 @@ class ReservationService implements IReservationService
     public function register(Request $request): JsonResponse
     {
 
-        $isReserved = $this->checkCarAvailability($request->car_id);
-
         $isOutOfValidPeriod = $this->checkValidPeriod($request);
 
         if($isOutOfValidPeriod){
@@ -36,19 +32,6 @@ class ReservationService implements IReservationService
                 ],
                 401
             );
-        }
-
-        if($isReserved){
-            return response()->json(['error' => 'Veículo indisponível'], 401);
-        }
-        $result = json_decode($this->reservationRepository->register($request)->status());
-
-        if ($result === ResponseAlias::HTTP_CREATED) {
-            RegisterReservation::dispatch($request);
-
-            return response()->json([
-                'message' => 'Carro reservado com sucesso.'
-            ], 201);
         }
 
         return $this->reservationRepository->register($request);
@@ -66,6 +49,33 @@ class ReservationService implements IReservationService
 
     public function update(Request $request): JsonResponse
     {
+        $isReserved = $this->checkCarAvailability($request->car_id);
+
+        if($isReserved){
+            return response()->json(['error' => 'Veículo indisponível'], 401);
+        }
+
+        $isOutOfValidPeriod = $this->checkValidPeriod($request);
+
+        if($isOutOfValidPeriod){
+            return response()->json(
+                [
+                    'error' => 'A data de retirada ou devolução não pode ser menor que a data atual'
+                ],
+                401
+            );
+        }
+
+        $result = json_decode($this->reservationRepository->update($request)->status());
+        if ($result === ResponseAlias::HTTP_OK) {
+            RegisterReservation::dispatch($request);
+
+            return response()->json([
+                'message' => 'Locação confirmada com sucesso.'
+            ], 200);
+        }
+
+
         return $this->reservationRepository->update($request);
     }
 

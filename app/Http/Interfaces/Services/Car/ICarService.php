@@ -9,6 +9,8 @@ interface ICarService
 {
     public function register(Request $request): JsonResponse;
 
+    public function availableCars(Request $request): JsonResponse;
+
     public function getAll(Request $request): JsonResponse;
 
     public function getOneById(Request $request): JsonResponse;

@@ -20,6 +20,7 @@ class CarSeeder extends Seeder
                 'plate' => 'HVV-5579',
                 'year' => 2023,
                 'reserved' => true,
+                'category_id' => 3
             ],
             [
                 'brand' => 'Toyota',
@@ -27,13 +28,63 @@ class CarSeeder extends Seeder
                 'plate' => 'HJJ-3579',
                 'year' => 2023,
                 'reserved' => false,
+                'category_id' => 2
             ],
             [
                 'brand' => 'Hyundai',
                 'model' => 'HB20',
                 'plate' => 'HGI-5929',
                 'year' => 2023,
-                'reserved'=> false
+                'reserved'=> false,
+                'category_id' => 1
+            ],
+            [
+                'brand' => 'Fiat',
+                'model' => 'Toro',
+                'plate' => 'HVV-4579',
+                'year' => 2023,
+                'reserved' => true,
+                'category_id' => 3
+            ],
+            [
+                'brand' => 'Toyota',
+                'model' => 'Corolla',
+                'plate' => 'HJJ-3579',
+                'year' => 2023,
+                'reserved' => false,
+                'category_id' => 2
+            ],
+            [
+                'brand' => 'Hyundai',
+                'model' => 'HB20',
+                'plate' => 'HGI-5929',
+                'year' => 2023,
+                'reserved'=> false,
+                'category_id' => 1
+            ],
+            [
+                'brand' => 'Fiat',
+                'model' => 'Toro',
+                'plate' => 'HVI-5679',
+                'year' => 2023,
+                'reserved' => true,
+                'category_id' => 3
+            ],
+            [
+                'brand' => 'Toyota',
+                'model' => 'Corolla',
+                'plate' => 'HJJ-3579',
+                'year' => 2023,
+                'reserved' => false,
+                'category_id' => 2
+            ],
+            [
+                'brand' => 'Hyundai',
+                'model' => 'HB20',
+                'plate' => 'HGI-5929',
+                'year' => 2023,
+                'reserved'=> false,
+                'category_id' => 1
             ],
 
         ];

@@ -24,11 +24,9 @@ class ReservationController extends Controller
     public function register(Request $request): JsonResponse
     {
         $request->validate([
-            'car_id' => ['required', 'integer'],
             'user_id' => ['required', 'integer'],
             'start_reservation_date' => ['required','date'],
             'end_reservation_date' => ['required', 'date'],
-            'canceled' => ['required', 'bool'],
         ]);
         return $this->reservationService->register($request);
     }
@@ -45,6 +43,12 @@ class ReservationController extends Controller
 
     public function update(Request $request): JsonResponse
     {
+        $request->validate([
+            'car_id' => ['required', 'integer'],
+            'user_id' => ['required', 'integer'],
+            'start_reservation_date' => ['required','date'],
+            'end_reservation_date' => ['required', 'date'],
+        ]);
         return $this->reservationService->update($request);
     }
 

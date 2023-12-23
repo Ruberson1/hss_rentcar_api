@@ -24,11 +24,11 @@ class ReservationRepository implements IReservationRepository
 
             $reservation->save();
             return response()->json([
-                'message' => 'Carro reservado com sucesso.'
+                'message' => 'Locação solicitada com sucesso.'
             ], 201);
         } catch (Exception $exception) {
             return response()->json([
-                'error' => 'Failed to create reservation.',
+                'error' => 'Falha ao tentar criar a Locação.',
                 'message' => $exception->getMessage()
             ], 500);
         }
@@ -49,7 +49,7 @@ class ReservationRepository implements IReservationRepository
             $reservation = Reservation::where('car_id', $carId)->get();
             return response()->json($reservation);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Reservation not found'], 404);
+            return response()->json(['error' => 'Locação não encontrada'], 404);
         }
     }
 
@@ -58,11 +58,11 @@ class ReservationRepository implements IReservationRepository
         $reservationId = $request->id;
 
         try {
-            $car = Reservation::findOrFail($reservationId);
-            $car->update($request->all());
-            return response()->json($car);
+            $reservation = Reservation::findOrFail($reservationId);
+            $reservation->update($request->all());
+            return response()->json($reservation, 200);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Car not found'], 404);
+            return response()->json(['error' => 'Locação não encontrada'], 404);
         }
     }
 
@@ -74,7 +74,7 @@ class ReservationRepository implements IReservationRepository
             $reservation = Reservation::where('user_id', $userId)->get();
             return response()->json($reservation);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Reservation not found'], 404);
+            return response()->json(['error' => 'Locação não encontrada'], 404);
         }
     }
 
@@ -89,9 +89,9 @@ class ReservationRepository implements IReservationRepository
             $reservation = Reservation::findOrFail($reservationId);
             $reservation->canceled = $canceled['canceled'];
             $reservation->save();
-            return response()->json(['message' => 'Reservation reserved status updated'], 200);
+            return response()->json(['message' => 'Locação cancelada'], 200);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Reservation not found'], 404);
+            return response()->json(['error' => 'Locação não encontrada'], 404);
         }
     }
 }
