@@ -3,9 +3,9 @@
 
     Olá {{ $data['user_name'] }},
 
-    A equipe da Britvic RentCar agradece pela sua preferência em escolher nossos serviços de locação de veículos. Estamos empolgados em fornecer a você uma experiência excepcional durante o período de locação.
+    A equipe da HSS RentCar agradece pela sua preferência em escolher nossos serviços de locação de veículos. Estamos empolgados em fornecer a você uma experiência excepcional durante o período de locação.
 
-    # Detalhes da Reserva
+      Detalhes da Reserva
 
     - Veículo: {{ $data['brand_car'] }}
     - Modelo: {{ $data['model_car'] }}
@@ -14,7 +14,7 @@
     - Data de Retirada: {{ $data['start_reservation_date'] }}
     - Data de Devolução: {{ $data['end_reservation_date'] }}
 
-    # Opções de Seguro
+      Opções de Seguro
 
     Oferecemos diversas opções de seguro para garantir sua tranquilidade durante a locação. Por favor, reveja as opções abaixo e informe-nos sobre sua escolha:
 
@@ -25,7 +25,7 @@
     Por favor, responda a este e-mail indicando sua escolha de seguro.
 
 
-    Agradecemos novamente por escolher a Britvic RentCar. Estamos ansiosos para atendê-lo e proporcionar uma experiência de locação excepcional.
+    Agradecemos novamente por escolher a HSS RentCar. Estamos ansiosos para atendê-lo e proporcionar uma experiência de locação excepcional.
 
     Obrigado,
 

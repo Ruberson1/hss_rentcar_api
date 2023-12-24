@@ -30,9 +30,10 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'cpf' => ['required', 'string','max:11', 'unique:'.User::class],
-            'password' => ['required'],
+            'email' => ['required', 'email:rfc,dns','string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'cpf' => ['required', 'string','max:11', 'min:11','unique:'.User::class],
+            'password' => ['required', 'min:6', 'max:12','confirmed', Rules\Password::defaults()]
+
         ]);
         return $this->userService->register($request);
     }
