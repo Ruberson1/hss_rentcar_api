@@ -1,66 +1,57 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# README
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Sistema de Gerenciamento de Locação
 
-## About Laravel
+Bem-vindo ao Sistema de Gerenciamento de Locação, uma aplicação Vue.js com backend Laravel, projetada para empresas de locação de veículos. Esta aplicação faz parte de um desafio técnico e serve como uma solução abrangente para gerenciar reservas de veículos, confirmações e funções de usuário.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Frontend
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### Tecnologias Utilizadas
+- **Vue.js:** Um framework JavaScript progressivo para construir interfaces de usuário.
+- **Axios:** Um cliente HTTP baseado em promessas para fazer solicitações de API.
+- **Pinia:** Uma biblioteca de gerenciamento de estado para aplicações Vue.js.
+- **Bootstrap:** Um framework de front-end para construir aplicações web responsivas e modernas.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### Sistema de Autenticação
+A aplicação possui um sistema de autenticação completo com três tipos de funções de usuário: admin, comum e cliente. Cada função tem permissões e responsabilidades específicas dentro do sistema.
 
-## Learning Laravel
+- **Admin:** Usuários administradores têm permissões adicionais além dos usuários comuns, incluindo a capacidade de listar e criar veículos e usuários.
+- **Comum:** Usuários comuns têm a autoridade para confirmar reservas feitas por clientes.
+- **Cliente:** Clientes podem iniciar reservas de veículos.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### Fluxo de Reserva
+1. **Reserva do Cliente:** Um cliente inicia uma reserva para um veículo.
+2. **Confirmação por Usuário Comum/Admin:** Um usuário comum ou administrador confirma a reserva, desencadeando uma notificação por e-mail para o cliente com detalhes sobre a reserva e o veículo alugado.
+3. **Notificação por E-mail:** Um e-mail é enviado ao cliente com informações relevantes sobre a reserva e o veículo.
+4. **Desencadeamento de Evento:** Um evento é acionado para atualizar o status de confirmação para verdadeiro e enviar o e-mail de confirmação quando os funcionários confirmam a reserva.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### Permissões Específicas do Admin
+Os usuários administradores têm permissões adicionais, incluindo a capacidade de listar e criar veículos e usuários. Isso permite que os administradores gerenciem a frota de veículos e contas de usuário de forma eficiente.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Backend (Laravel)
 
-## Laravel Sponsors
+#### Tecnologias Utilizadas
+- **Laravel:** Um framework PHP poderoso e elegante para construir aplicativos web.
+- **Laravel Breeze:** Um pacote leve para autenticação e frontend do Laravel.
+- **Docker:** Uma plataforma para desenvolver, enviar e executar aplicativos em contêineres.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+#### Configuração do Ambiente
+Para executar o sistema, certifique-se de configurar seu arquivo `.env`. Se preferir, o sistema está configurado para rodar com Docker na porta 8000.
 
-### Premium Partners
+### Como Rodar
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+#### Usando Docker
+1. Certifique-se de ter o Docker instalado.
+2. Navegue até o diretório do projeto no terminal.
+3. Execute o comando: `docker-compose up -d`.
+4. Acesse o sistema em [http://localhost:8000](http://localhost:8000).
 
-## Contributing
+#### Configuração Manual
+1. Configure o arquivo `.env` com as informações do banco de dados e outras configurações necessárias.
+2. Execute as migrações do banco de dados: `php artisan migrate`.
+3. Inicie o servidor: `php artisan serve`.
+4. Acesse o sistema em [http://localhost:8000](http://localhost:8000).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Observação:** Certifique-se de ter as dependências do Laravel instaladas. Para mais informações, consulte a documentação oficial do Laravel.
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Aproveite o Sistema de Gerenciamento de Locação!
