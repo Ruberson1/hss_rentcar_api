@@ -33,7 +33,7 @@ class CarSeeder extends Seeder
             [
                 'brand' => 'Hyundai',
                 'model' => 'HB20',
-                'plate' => 'HGI-5929',
+                'plate' => 'HGI-5999',
                 'year' => 2023,
                 'reserved'=> false,
                 'category_id' => 1
@@ -49,7 +49,7 @@ class CarSeeder extends Seeder
             [
                 'brand' => 'Toyota',
                 'model' => 'Corolla',
-                'plate' => 'HJJ-3579',
+                'plate' => 'HJJ-3699',
                 'year' => 2023,
                 'reserved' => false,
                 'category_id' => 2
@@ -57,7 +57,7 @@ class CarSeeder extends Seeder
             [
                 'brand' => 'Hyundai',
                 'model' => 'HB20',
-                'plate' => 'HGI-5929',
+                'plate' => 'HGI-5629',
                 'year' => 2023,
                 'reserved'=> false,
                 'category_id' => 1
@@ -73,7 +73,7 @@ class CarSeeder extends Seeder
             [
                 'brand' => 'Toyota',
                 'model' => 'Corolla',
-                'plate' => 'HJJ-3579',
+                'plate' => 'HJJ-3599',
                 'year' => 2023,
                 'reserved' => false,
                 'category_id' => 2

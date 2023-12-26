@@ -17,8 +17,10 @@ class Reservation extends Model
     protected $fillable = [
         'car_id',
         'user_id',
+        'category_id',
         'start_reservation_date',
         'end_reservation_date',
+        'confirm_reservation',
         'canceled',
         'confirm_rental',
         'confirm_return'
@@ -31,4 +33,23 @@ class Reservation extends Model
         'start_reservation_date' => 'date:d/m/Y H:i:s',
         'end_reservation_date' => 'date:d/m/Y H:i:s',
     ];
+
+    protected $with = [
+        'users'
+    ];
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function cars(): BelongsToMany
+    {
+        return $this->belongsToMany(Car::class);
+    }
 }

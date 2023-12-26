@@ -46,7 +46,8 @@ class User extends Authenticatable
     ];
 
     protected $with = [
-        'permissions'
+        'permissions',
+        'reservations'
     ];
 
     public function permissions(): BelongsToMany
@@ -54,8 +55,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Permission::class);
     }
 
-    public function cars(): BelongsToMany
+    public function reservations(): BelongsToMany
     {
-        return $this->belongsToMany(Car::class);
+        return $this->belongsToMany(Reservation::class);
     }
 }

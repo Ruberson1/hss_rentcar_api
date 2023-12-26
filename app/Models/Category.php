@@ -13,4 +13,9 @@ class Category extends Model
         'name',
         'description'
     ];
+
+    public function reservations(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

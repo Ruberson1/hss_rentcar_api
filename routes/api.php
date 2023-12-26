@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Car\CarController;
+use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Reservation\ReservationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,4 +38,8 @@ Route::prefix('reservation')->group(function () {
     Route::get('/user-reservation/{user_id}', [ReservationController::class, 'getByUser']);
     Route::put('/{id}', [ReservationController::class, 'update']);
     Route::patch('/{id}', [ReservationController::class, 'canceled']);
+});
+
+Route::prefix('categories')->group(function () {
+    Route::get('/list', [CategoryController::class, 'getAll']);
 });

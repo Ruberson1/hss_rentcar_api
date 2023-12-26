@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('car_id')->nullable();
             $table->foreign('car_id')->references('id')->on('cars');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->foreignId('user_id')->constrained('users');
             $table->dateTime('start_reservation_date')->nullable();
             $table->dateTime('end_reservation_date')->nullable();
+            $table->boolean('confirm_reservation')->default(false);
             $table->boolean('canceled')->default(false);
             $table->boolean('confirm_rental')->default(false);
             $table->boolean('confirm_return')->default(false);

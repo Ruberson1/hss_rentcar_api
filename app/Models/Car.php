@@ -26,12 +26,15 @@ class Car extends Model
     ];
 
     protected $casts = [
-
         'reserved' => 'boolean'
     ];
 
-    public function users(): BelongsToMany
+    protected $with = [
+        'categories'
+    ]
+
+    public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Category::class);
     }
 }

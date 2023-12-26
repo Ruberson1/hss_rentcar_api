@@ -21,6 +21,7 @@ class ReservationSeeder extends Seeder
                 'user_id' => 1,
                 'start_reservation_date' => '2023-12-26 12:00:00',
                 'end_reservation_date' => '2023-12-27 12:00:00',
+                'confirm_reservation' => false,
                 'confirm_rental' => false,
                 'confirm_return' => false
             ],
@@ -29,6 +30,7 @@ class ReservationSeeder extends Seeder
                 'user_id' => 1,
                 'start_reservation_date' => '2023-12-26 12:00:00',
                 'end_reservation_date' => '2023-12-27 12:00:00',
+                'confirm_reservation' => false,
                 'confirm_rental' => false,
                 'confirm_return' => false
             ],
@@ -37,6 +39,7 @@ class ReservationSeeder extends Seeder
                 'user_id' => 1,
                 'start_reservation_date' => '2023-12-26 12:00:00',
                 'end_reservation_date' => '2023-12-27 12:00:00',
+                'confirm_reservation' => false,
                 'confirm_rental' => true,
                 'confirm_return' => false
             ],
